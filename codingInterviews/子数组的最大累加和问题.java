@@ -1,4 +1,6 @@
 import java.util.*;
+import java.math.*;
+
 /**
  * 题目描述
  * 给定一个数组arr，返回子数组的最大累加和
@@ -12,7 +14,6 @@ import java.util.*;
  * 返回值
  * 12
  */
-import java.math.*;
 public class Solution {
     /**
      * max sum of the subarray
@@ -22,15 +23,15 @@ public class Solution {
     public int maxsumofSubarray (int[] arr) {
         if (arr.length==0){
             return 0;
-        }if (arr.length==1){
-            return arr[0];
         }
-        // write code here
-        int[] dp = new int[arr.length];
-        dp[0]=arr[0];
+        int max =arr[0];
         for (int i=1;i<arr.length;i++){
-            dp[i] = Math.max(dp[i-1]+arr[i],dp[i-1]);
+            max = Math.max(max+arr[i],max);
         }
-        return dp[arr.length-1];
+        return max;
     }
 }
+/**
+ * 动态规划思想
+ * dp[i]= Max(dp[i-1],dp[i-1]+arr[i])
+ */

@@ -24,24 +24,31 @@ public class Solution {
      * @param o2 int整型
      * @return int整型
      */
-    private ArrayList<Integer> arrays = new ArrayList<>();
-
     public int lowestCommonAncestor (TreeNode root, int o1, int o2) {
-        return each(root,o1,o2).val;
-    }
-
-    public TreeNode each(TreeNode root, int o1, int o2){
-        if (root==null||root.val==o1||root.val==o2){
-            return root;
+        if (root==null){
+            return -1;
         }
-        TreeNode left = each(root.left,o1,o2);
-        TreeNode right = each(root.right,o1,o2);
-        if(left==null){
+        if (root.val==o1||root.val==o2){
+            return root.val;
+        }
+        int left = lowestCommonAncestor(root.left,o1,o2);
+        int right = lowestCommonAncestor(root.right,o1,o2);
+        // o1 和 o2 同时在右子树
+        if (left==-1){
             return right;
         }
-        if (right==null){
+        // o1 和 o2 同时在左子树
+        if (right==-1){
             return left;
         }
-        return root;
+        // o1 和 o2 分别在左右子树
+        return root.val;
     }
 }
+/**
+ * DFS框架遍历该二叉树
+ * 公共先祖共有三种情况：
+ *   1. o1 和 o2 分别在左右树
+ *   2. o1 和 o2 同时在左子树
+ *   3. o1 和 o2 同时在右子树
+ */
