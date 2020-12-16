@@ -27,4 +27,22 @@ public class Solution {
         }
         return dp[target];
     }
+
+    /**
+     * 优化版本
+     * @param target
+     * @return
+     */
+    public int JumpFloor2(int target) {
+        if (target<2){
+            return target;
+        }
+        int step1=1,step2=1,result=0;
+        for (int i=2;i<=target;i++){
+            result=step1+step2;
+            step2=step1;
+            step1=result;
+        }
+        return result;
+    }
 }

@@ -40,26 +40,20 @@ public class Solution {
      * @return int整型ArrayList<ArrayList<>>
      */
     public ArrayList<ArrayList<Integer>> levelOrder (TreeNode root) {
-        // write code here
-        Queue<TreeNode> queue= new LinkedList<TreeNode>();
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-        if (root==null){
-            return result;
-        }
+        if (root==null){ return result;}
+        Queue<TreeNode> queue= new LinkedList<TreeNode>();
         queue.offer(root);
         while(queue.size()>0){
-            ArrayList<Integer>  level= new ArrayList<Integer>();
-            int size = queue.size();
-            for(int i=0;i<size;i++){
-                TreeNode tmp = queue.poll();
-                level.add(tmp.val);
-                if(tmp.left!=null){
-                    queue.offer(tmp.left);
-                }if (tmp.right!=null){
-                    queue.offer(tmp.right);
-                }
+            int len = queue.size();
+            ArrayList<Integer> tmp = new ArrayList<Integer>();
+            for (int i=0;i<len;i++){
+                TreeNode n = queue.poll();
+                tmp.add(n.val);
+                if (n.left!=null){queue.offer(n.left);}
+                if (n.right!=null){queue.offer(n.right);}
             }
-            result.add(level);
+            result.add(tmp);
         }
         return result;
     }

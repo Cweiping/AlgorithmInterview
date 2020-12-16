@@ -27,48 +27,45 @@ import java.util.*;
 public class Solution {
     /**
      * lru design
+     *
      * @param operators int整型二维数组 the ops
-     * @param k int整型 the k
+     * @param k         int整型 the k
      * @return int整型一维数组
      */
-    public int[] LRU (int[][] operators, int k) {
+    public int[] LRU(int[][] operators, int k) {
         ArrayList<Integer> result = new ArrayList<>();
-        // write code here
-        LinkedHashMap<Integer,Integer> map =new LinkedHashMap<>();
-        ArrayList<Integer> arr = new ArrayList<>();
-        for (int i =0;i<operators.length;i++){
-            int opt= operators[i][0];
-            int key= operators[i][1];
-            if(opt==1){
-                int val = operators[i][2];
-                boolean isExisted = map.containsKey(key);
-                if (isExisted){
-                    arr.add(key);
-                    map.put(key,val);
-                }
-                if (map.size()==k){
-                    for (Integer ky:map.keySet()){
-                        if(!arr.contains(ky)){
-                            map.remove(ky);
-                            break;
-                        }
+        // 使用队列存储记录(key, value)，队列有序，便于管理最久未被使用的记录
+        LinkedHashMap<Integer, Integer> map = new LinkedHashMap<>();
+        for (int[] operator : operators) {
+            int key = operator[1];
+            switch (operator[0]) {
+                // set 操作
+                case 1:
+                    if (map.size() >= k) {
+                        // 队列满载，移除第一条数据
+                        map.remove(map.keySet().iterator().next());
                     }
-                }else{
-                    map.put(key,val);
-                }
-            }else{
-                boolean isExisted = map.containsKey(key);
-                if (isExisted){
-                    arr.add(key);
-                    result.add(map.get(key));
-                }else{
-                    result.add(-1);
-                }
+                    map.put(key, operator[2]);
+                    break;
+                // get 操作
+                case 2:
+                    // 若存在则获取其 value，并重新入队列，表示数据使用频率更新
+                    if (map.containsKey(key)) {
+                        int val = map.get(key);
+                        result.add(val);
+                        map.remove(key);
+                        map.put(key, val);
+                    } else {
+//                        若x未出现过或已被移除，则返回-1
+                        result.add(-1);
+                    }
+                    break;
+                default:
             }
         }
-        int[] res =new int[result.size()];
-        for (int i=0;i<result.size();i++){
-            res[i]=result.get(i);
+        int[] res = new int[result.size()];
+        for (int i = 0; i < result.size(); i++) {
+            res[i] = result.get(i);
         }
         return res;
     }

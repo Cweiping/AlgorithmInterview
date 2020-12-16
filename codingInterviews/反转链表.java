@@ -17,6 +17,16 @@ public class ListNode {
     }
 }*/
 import java.util.*;
+
+/**
+ * 题目描述
+ * 输入一个链表，反转链表后，输出新链表的表头。
+ * 示例1
+ * 输入
+ * {1,2,3}
+ * 返回值
+ * {3,2,1}
+ */
 public class Solution {
     public ListNode ReverseList(ListNode head) {
         if (head==null){
@@ -36,5 +46,16 @@ public class Solution {
             tmp=tmp.next;
         }
         return root;
+    }
+    public ListNode ReverseList2(ListNode head) {
+        ListNode pre = null;
+        ListNode next = null;
+        while(head!=null){
+            next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+        }
+        return pre;
     }
 }

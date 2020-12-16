@@ -29,4 +29,20 @@ public class Solution {
         }
         return a.length+1;
     }
+
+    public int upper_bound_2 (int n, int v, int[] a) {
+        if (a[n-1]<v)return n+1;
+        int left=0,right=n-1;
+        int temp=0;
+        while(left<right){
+            int mid=(left+right)/2;
+            if (a[mid]<v){
+                left=mid+1;
+            }else{
+                temp=mid;
+                right=mid;
+            }
+        }
+        return temp+1;
+    }
 }

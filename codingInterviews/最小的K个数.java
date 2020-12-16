@@ -9,6 +9,12 @@ import java.util.*;
  * [1,2,3,4]
  */
 public class Solution {
+    /**
+     * 快速排序实现
+     * @param input
+     * @param k
+     * @return
+     */
     public ArrayList<Integer> GetLeastNumbers_Solution(int [] input, int k) {
         ArrayList<Integer> result = new ArrayList<>();
         if (k>input.length){
@@ -22,8 +28,6 @@ public class Solution {
                     input[j]=tmp;
                 }
             }
-        }
-        for (int i=0; i<k;i++){
             result.add(input[i]);
         }
         return result;

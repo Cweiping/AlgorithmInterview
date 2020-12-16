@@ -14,7 +14,6 @@ import java.util.*;
  */
 public class Finder {
     public int findKth(int[] a, int n, int K) {
-        // write code here
         for(int i=0;i<K;i++){
             for(int j=1+i;j<a.length;j++){
                 if (a[i]<a[j]){

@@ -21,49 +21,32 @@ import java.util.*;
  * 6
  */
 public class Solution {
+
+    ArrayList<Integer> pre = new ArrayList<Integer>();
+    ArrayList<Integer> mid = new ArrayList<Integer>();
+    ArrayList<Integer> post = new ArrayList<Integer>();
+
     /**
-     *
      * @param root TreeNode类 the root of binary tree
      * @return int整型二维数组
      */
-    public int[][] threeOrders (TreeNode root) {
-        // write code here
+    public int[][] threeOrders(TreeNode root) {
+        each(root);
         int[][] result = new int[3][];
-        result[0]=beforeEach(root).stream().mapToInt(x->x).toArray();
-        result[1]=midEach(root).stream().mapToInt(x->x).toArray();
-        result[2]=afterEach(root).stream().mapToInt(x->x).toArray();
+        result[0] = pre.stream().mapToInt(Integer::intValue).toArray();
+        result[1] = mid.stream().mapToInt(Integer::intValue).toArray();
+        result[2] = post.stream().mapToInt(Integer::intValue).toArray();
         return result;
     }
 
-    public ArrayList<Integer> beforeEach(TreeNode root){
-        ArrayList<Integer> result = new ArrayList<>();
-        if (root==null){
-            return result;
+    public void each(TreeNode root) {
+        if (root == null) {
+            return;
         }
-        result.add(root.val);
-        result.addAll(beforeEach(root.left));
-        result.addAll(beforeEach(root.right));
-        return result;
-    }
-    public ArrayList<Integer>  midEach(TreeNode root){
-        ArrayList<Integer> result = new ArrayList<>();
-        if (root==null){
-            return result;
-        }
-        result.addAll(midEach(root.left));
-        result.add(root.val);
-        result.addAll(midEach(root.right));
-        return result;
-    }
-
-    public ArrayList<Integer>  afterEach(TreeNode root){
-        ArrayList<Integer> result = new ArrayList<>();
-        if (root==null){
-            return result;
-        }
-        result.addAll(afterEach(root.left));
-        result.addAll(afterEach(root.right));
-        result.add(root.val);
-        return result;
+        pre.add(root.val);
+        each(root.left);
+        mid.add(root.val);
+        each(root.right);
+        post.add(root.val);
     }
 }
