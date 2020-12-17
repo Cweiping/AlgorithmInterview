@@ -4,6 +4,7 @@
  * 注意：
  * 可以假设 数组有足够的空间存放 数组的元素， 和 中初始的元素数目分别为 和
  */
+
 public class Solution {
     public void merge(int A[], int m, int B[], int n) {
         int idxA = m-1,idxB = n-1;

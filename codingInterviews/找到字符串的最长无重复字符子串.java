@@ -17,21 +17,21 @@ import java.math.*;
  */
 public class Solution {
     /**
-     *
      * @param arr int整型一维数组 the array
      * @return int整型
      */
-    public int maxLength (int[] arr) {
-        int left =0;
-        HashMap<Integer,Integer> map = new HashMap<>();
-        int result = 1;
-        int right=1;
-        for(;right<arr.length;right++){
-            if (map.containsKey(arr[right])){
-                left=Math.max(map.get(arr[right])+1,left);
+    public int maxLength(int[] arr) {
+        int left = 0, right = 1, result = 1;
+        // 记录元素下标，并以此去重
+        HashMap<Integer, Integer> map = new HashMap<>();
+        while (right < arr.length) {
+            if (map.containsKey(arr[right])) {
+                // 获取最大的值为左边界，因为值相等，只有最大的left才符合要求
+                left = Math.max(map.get(arr[right]) + 1, left);
             }
-            map.put(arr[right],right);
-            result= Math.max(result,right-left+1);
+            map.put(arr[right], right);
+            result = Math.max(result, right - left + 1);
+            right++;
         }
         return result;
     }

@@ -22,19 +22,17 @@ public class Solution {
      * @return bool布尔型
      */
     public boolean isValid (String s) {
-        if (s.length()%2==1){
-            return false;
-        }
+        if (s.length()%2==1){ return false; }
         Stack<Character>  stack = new Stack<Character>();
-        char[]  str= s.toCharArray();
-        for (int i=0; i< str.length;i++){
-            if (str[i]=='('){
+        for (int i=0; i< s.length();i++){
+            char ch = s.charAt(i);
+            if (ch=='('){
                 stack.push(')');
-            }else if ( str[i] == '{'){
+            }else if ( ch == '{'){
                 stack.push('}');
-            }else if ( str[i] == '['){
+            }else if ( ch == '['){
                 stack.push(']');
-            }else if (stack.empty()||stack.pop()!=str[i]){
+            }else if (stack.empty()||stack.pop()!=ch){
                 return false;
             }
         }

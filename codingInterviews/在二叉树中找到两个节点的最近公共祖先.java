@@ -25,22 +25,14 @@ public class Solution {
      * @return int整型
      */
     public int lowestCommonAncestor (TreeNode root, int o1, int o2) {
-        if (root==null){
-            return -1;
-        }
-        if (root.val==o1||root.val==o2){
-            return root.val;
-        }
+        if (root==null){ return -1; }
+        if (root.val==o1||root.val==o2){ return root.val; }
         int left = lowestCommonAncestor(root.left,o1,o2);
         int right = lowestCommonAncestor(root.right,o1,o2);
         // o1 和 o2 同时在右子树
-        if (left==-1){
-            return right;
-        }
+        if (left==-1){ return right; }
         // o1 和 o2 同时在左子树
-        if (right==-1){
-            return left;
-        }
+        if (right==-1){ return left;}
         // o1 和 o2 分别在左右子树
         return root.val;
     }
