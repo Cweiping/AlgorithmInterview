@@ -21,20 +21,14 @@ public class Solution {
      * @return string字符串
      */
     public String solve (String s, String t) {
-        // write code here
         int sum =0;
-        StringBuffer ss = new StringBuffer(s);
-        StringBuffer tt = new StringBuffer(t);
-        ss.reverse();
-        tt.reverse();
+        StringBuffer ss = new StringBuffer(s).reverse();
+        StringBuffer tt = new StringBuffer(t).reverse();
+        // 较短数组补零，对齐操作
         if (ss.length()>tt.length()){
-            for(int i=tt.length();i<ss.length();i++){
-                tt.append("0");
-            }
+            for(int i=tt.length();i<ss.length();i++){ tt.append("0"); }
         }else{
-            for(int i=ss.length();i<tt.length();i++){
-                ss.append("0");
-            }
+            for(int i=ss.length();i<tt.length();i++){ ss.append("0"); }
         }
         StringBuffer result = new StringBuffer();
         for (int i=0;i<tt.length();i++){
@@ -42,9 +36,8 @@ public class Solution {
             result.append(sum%10);
             sum/=10;
         }
-        if (sum==1){
-            result.append("1");
-        }
+        //追加最后一位
+        if (sum==1){ result.append("1");}
         return result.reverse().toString();
     }
 }

@@ -26,7 +26,7 @@ public class Solution {
      * @return ListNode类
      */
     public ListNode addInList (ListNode head1, ListNode head2) {
-        // write code here
+        // 两个数组入栈逆序链表
         Stack<Integer>  stack1 =new Stack<>();
         while(head1!=null){
             stack1.push(head1.val);
@@ -39,6 +39,7 @@ public class Solution {
         }
         ListNode root=null;
         int out = 0;
+        // 逆序获取链表数据直至所有数据弹出。
         while(stack1.size()>0||stack2.size()>0||out!=0){
             int s1 = stack1.size()>0? stack1.pop():0;
             int s2 = stack2.size()>0? stack2.pop():0;

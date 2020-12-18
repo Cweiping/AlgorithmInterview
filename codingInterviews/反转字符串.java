@@ -12,21 +12,16 @@ import java.util.*;
 public class Solution {
     /**
      * 反转字符串
+     *
      * @param str string字符串
      * @return string字符串
      */
-    public String solve (String str) {
-        // write code here
-        char[] s = str.toCharArray();
-        for(int i=0;i<s.length/2;i++){
-            char tmp = s[i];
-            s[i]=s[s.length-i-1];
-            s[s.length-i-1] = tmp;
-        }
+    public String solve(String str) {
         StringBuffer result = new StringBuffer("");
-        for(int i=0;i<s.length;i++){
-            result.append(s[i]);
+        for (int i = str.length() - 1; i >= 0; i--) {
+            result.append(str.charAt(i));
         }
         return result.toString();
     }
+}
 }
