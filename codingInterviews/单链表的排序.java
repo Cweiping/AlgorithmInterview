@@ -18,27 +18,23 @@ import java.util.*;
  */
 public class Solution {
     /**
-     *
      * @param head ListNode类 the head node
      * @return ListNode类
      */
-    public ListNode sortInList (ListNode head) {
-        // write code here
-        if (head==null|| head.next==null){
-            return head;
-        }
+    public ListNode sortInList(ListNode head) {
+        if (head == null || head.next == null) return head;
         ArrayList<Integer> array = new ArrayList<>();
-        while(head!=null){
+        while (head != null) {
             array.add(head.val);
-            head=head.next;
+            head = head.next;
         }
-        array.sort(Comparator.naturalOrder());
-        ListNode root = new ListNode(array.get(0));
-        ListNode h = root;
-        for (int i=0;i<array.size();i++){
-            h.next=new ListNode(array.get(i));
-            h=h.next;
+        Collections.sort(array);
+        ListNode preHead = new ListNode(-1);
+        ListNode h = preHead;
+        for (int i = 0; i < array.size(); i++) {
+            h.next = new ListNode(array.get(i));
+            h = h.next;
         }
-        return root.next;
+        return preHead.next;
     }
 }

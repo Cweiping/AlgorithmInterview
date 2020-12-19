@@ -12,30 +12,21 @@ import java.util.*;
 public class Solution {
     /**
      * return a array which include all ans for op3
+     *
      * @param op int整型二维数组 operator
      * @return int整型一维数组
      */
-    private ArrayList<Integer> result = new ArrayList<Integer>();
-    public int[] getMinStack (int[][] op) {
+    public int[] getMinStack(int[][] op) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
         Stack<Integer> stack = new Stack<Integer>();
         ArrayList<Integer> arr = new ArrayList<Integer>();
-        for (int[] o: op){
-            if (o[0]==1){
+        for (int[] o : op) {
+            if (o[0] == 1) {
                 stack.push(o[1]);
                 arr.add(o[1]);
-            }else if(o[0]==2){
-                Integer val = stack.pop();
-                arr.remove(val);
-            }else if (o[0]==3){
-                Collections.sort(arr);
-                result.add(arr.get(0));
-            }
+            } else if (o[0] == 2) arr.remove(stack.pop());
+            else if (o[0] == 3) result.add(Collections.min(arr));
         }
-        int [] res = new int[result.size()];
-        for (int i= 0;i<result.size();i++){
-            res[i]=result.get(i).intValue();
-        }
-        return res;
-
+        return result.stream().mapToInt(Integer::intValue).toArray();
     }
 }

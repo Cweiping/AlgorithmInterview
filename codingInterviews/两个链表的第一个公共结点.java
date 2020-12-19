@@ -18,9 +18,7 @@ public class Solution {
         while(pHead1!=null){
             ListNode p2 = pHead2;
             while(p2!=null){
-                if (p2==pHead1){
-                    return pHead1;
-                }
+                if (p2==pHead1){ return pHead1; }
                 p2=p2.next;
             }
             pHead1=pHead1.next;

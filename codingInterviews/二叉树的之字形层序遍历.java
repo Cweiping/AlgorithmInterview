@@ -33,13 +33,9 @@ public class Solution {
      * @return int整型ArrayList<ArrayList<>>
      */
     public ArrayList<ArrayList<Integer>> zigzagLevelOrder (TreeNode root) {
-        // write code here
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
-
         Queue<TreeNode> queue = new LinkedList<>();
-        if (root== null){
-            return result;
-        }
+        if (root== null){ return result; }
         queue.offer(root);
         boolean flag=true;
         while(queue.size()>0){
@@ -47,18 +43,9 @@ public class Solution {
             ArrayList<Integer> tmp = new ArrayList<>();
             for(int i=0;i<len;i++){
                 TreeNode node = queue.poll();
-                if (flag){
-                    tmp.add(node.val);
-                }else{
-                    tmp.add(0,node.val);
-                }
-                if (node.left!=null){
-                    queue.offer(node.left);
-                }
-                if (node.right!=null){
-                    queue.offer(node.right);
-                }
-
+                tmp.add(flag?tmp.size():0,node.val);
+                if (node.left!=null){ queue.offer(node.left); }
+                if (node.right!=null){ queue.offer(node.right); }
             }
             flag=!flag;
             result.add(tmp);

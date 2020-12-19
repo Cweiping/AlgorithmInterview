@@ -14,11 +14,8 @@ public class Solution {
             map.put(key,map.containsKey(key)?2:1);
         }
         ArrayList<Integer> result = new ArrayList<>();
-        for  ( Integer key :map.keySet()){
-            if (map.get(key)==1){
-                result.add(key);
-            }
-        }
+        for  ( Integer key :map.keySet())
+            if (map.get(key)==1)  result.add(key);
         num1[0]=result.get(0);
         num2[0]=result.get(1);
     }
