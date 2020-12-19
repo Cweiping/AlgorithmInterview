@@ -30,7 +30,6 @@ public class Solution {
      * @param root TreeNode类
      * @return int整型
      */
-    private int max;
     public int maxDepth (TreeNode root) {
         return root==null? 0:Math.max(maxDepth(root.left),maxDepth(root.right))+1;
     }

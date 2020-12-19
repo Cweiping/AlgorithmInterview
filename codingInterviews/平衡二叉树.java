@@ -12,12 +12,12 @@ import java.util.*;
  * true
  */
 public class Solution {
+
     public boolean IsBalanced_Solution(TreeNode root) {
-        if(root==null){ return true;}
-        return Math.abs(getDepth(root.left)-getDepth(root.right))<=1;
+        return root == null || Math.abs(getDepth(root.left) - getDepth(root.right)) <= 1;
     }
-    public int getDepth(TreeNode root){
-        if(root==null){ return 0;}
-        return Math.max(getDepth(root.left)+1,getDepth(root.right)+1);
+
+    public int getDepth(TreeNode root) {
+        return root == null ? 0 : Math.max(getDepth(root.left) + 1, getDepth(root.right) + 1);
     }
 }

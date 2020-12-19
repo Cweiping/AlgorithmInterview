@@ -10,7 +10,7 @@ import java.util.*;
  * 返回值
  * 5
  * 说明
- *
+ * <p>
  * 示例2
  * 输入
  * [4,5,1,3,2]
@@ -18,33 +18,21 @@ import java.util.*;
  * 2
  */
 public class Solution {
-    public long maxWater (int[] arr) {
-
-        if(arr.length == 0 || arr.length <= 2)
-            return 0;
-        int left = 0, right = arr.length-1;
+    public long maxWater(int[] arr) {
+        if (arr.length <= 2) return 0;
+        //  双指针遍历
+        int left = 0, right = arr.length - 1;
         long res = 0;
-        //取低的为边界
-        int min = Math.min(arr[left],arr[right]);
-
-        while(left < right){
-            if(arr[left] < arr[right]){
-                left++;
-                //如果当前水位小于边界，则可以装水
-                if(arr[left] < min){
-                    res += min-arr[left];
-                }else{
-                    min = Math.min(arr[left],arr[right]);
-                }
-            }else{
-                right--;
-                if(arr[right] < min){
-                    res += min-arr[right];
-                }else{
-                    min = Math.min(arr[right],arr[left]);
-                }
-            }
+        // 木桶原理不多解释，min 为两侧较小值
+        int min = Math.min(arr[left], arr[right]);
+        while (left < right) {
+            if (arr[left] < arr[right]) left++;
+            else right--;
+            //   根据木桶原理取得 left 和 right 内靠近 min 的值
+            int tmp = Math.min(arr[left], arr[right]);
+            //   tmp 大于 min,则表示此处无法盛水，反之可以盛 min-tmp 水
+            if (min > tmp) res += min - tmp;
+            else min = tmp;
         }
-        return res;
     }
 }

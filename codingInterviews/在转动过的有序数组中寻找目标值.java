@@ -19,30 +19,19 @@ import java.util.*;
  */
 public class Solution {
     /**
-     *
-     * @param A int整型一维数组
+     * @param A      int整型一维数组
      * @param target int整型
      * @return int整型
      */
-    public int search (int[] A, int target) {
-        // write code here
-        if (A.length==0) return -1;
-        if (A.length==1&&A[0]!=target) return -1;
-        if (target==A[0]) {
-            return 0;
-        }else if (target>A[0]){
-            for (int i=1; i<A.length&&A[0]<A[i];i++){
-                if (target==A[i]){
-                    return i;
-                }
-            }
-        }else {
-            for (int i=A.length-1;i>0&& A[0]>A[i];i--){
-                if (target==A[i]){
-                    return i;
-                }
-            }
-        }
+    public int search(int[] A, int target) {
+        if (A.length == 0) return -1;
+        if (target < A[0]) {
+            for (int i = A.length - 1; i > 0 && A[0] > A[i]; i--)
+                if (target == A[i]) return i;
+        } else if (target > A[0]) {
+            for (int i = 1; i < A.length && A[0] < A[i]; i++)
+                if (target == A[i]) return i;
+        } else return 0;
         return -1;
     }
 }
