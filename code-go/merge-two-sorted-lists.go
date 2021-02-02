@@ -17,7 +17,6 @@ type ListNode struct {
 }
 
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
-	queue
 	root := &ListNode{}
 	head := root
 	for l1 != nil && l2 != nil {
